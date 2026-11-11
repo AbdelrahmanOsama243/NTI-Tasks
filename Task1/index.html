@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Store</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <h1 class="store-title">My Store</h1>
+  </header>
+
+  <main class="container">
+    <!-- Filter & Search Controls Section -->
+    <section class="controls-section">
+      <div class="filter-row top-row">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Search for products..." aria-label="Search products">
+        </div>
+        
+        <div class="select-box">
+          <select id="categorySelect" aria-label="Filter by Category">
+            <option value="all">All Categories</option>
+            <option value="electronics">Electronics</option>
+            <option value="men's clothing">Men's Clothing</option>
+            <option value="women's clothing">Women's Clothing</option>
+            <option value="jewelery">Jewelry</option>
+          </select>
+        </div>
+
+        <div class="price-box">
+          <input type="number" id="minPrice" placeholder="Min Price" min="0" aria-label="Minimum Price">
+        </div>
+
+        <div class="price-box">
+          <input type="number" id="maxPrice" placeholder="Max Price" min="0" aria-label="Maximum Price">
+        </div>
+
+        <button type="button" class="btn btn-apply" id="applyFiltersBtn">Apply Filters</button>
+      </div>
+
+      <div class="filter-row sort-row">
+        <div class="select-box sort-select-box">
+          <select id="sortBy" aria-label="Sort products">
+            <option value="default">Sort by: Default</option>
+            <option value="name">Sort by Name: Alphabetical</option>
+            <option value="rating">Sort by Rating: High to Low</option>
+            <option value="price">Sort by Price: Low to High</option>
+          </select>
+        </div>
+
+        <!-- Buttons to trigger CSS reactive modals -->
+        <div class="modal-triggers">
+          <a href="#filterModal" class="btn btn-secondary"><i class="fa-solid fa-sliders"></i> Filter Modal</a>
+          <a href="#productDetailModal" class="btn btn-secondary"><i class="fa-solid fa-eye"></i> Demo Product Details</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shopping Cart Section (From Reference UI) -->
+    <section class="cart-section">
+      <h2 class="cart-title">Shopping Cart</h2>
+      <ul class="cart-list" id="cartList">
+        <li class="cart-item" data-id="2">
+          <span class="cart-bullet">&bull;</span>
+          <span class="cart-item-name">Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED</span>
+          <span class="cart-item-price">– $999.99</span>
+          <span class="cart-item-qty">2</span>
+          <button type="button" class="btn-remove">Remove</button>
+        </li>
+        <li class="cart-item" data-id="1">
+          <span class="cart-bullet">&bull;</span>
+          <span class="cart-item-name">Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin</span>
+          <span class="cart-item-price">– $599</span>
+          <span class="cart-item-qty">1</span>
+          <button type="button" class="btn-remove">Remove</button>
+        </li>
+      </ul>
+      <div class="cart-summary">
+        <p class="summary-qty">Total Quantity: <span id="totalQuantity">3</span></p>
+        <p class="summary-price highlight-box">Total Price: <span id="totalPrice">$2598.98</span></p>
+      </div>
+    </section>
+
+    <!-- Product Grid Section -->
+    <section class="products-section">
+      <div class="products-grid" id="productsGrid">
+        
+        <!-- Product Card 1 -->
+        <article class="product-card" data-id="1" data-category="electronics" data-price="599.00" data-rating="4.5">
+          <div class="card-img-wrapper">
+            <img src="https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg" alt="Acer SB220Q bi 21.5 inches Full HD monitor" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="product-title" title="Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin">
+              Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin
+            </h3>
+            <div class="product-rating">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.5</span>
+              <span class="rating-count">(250 reviews)</span>
+            </div>
+            <div class="product-price">$599.00</div>
+            <div class="card-actions">
+              <button type="button" class="btn btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+              <a href="#productDetailModal" class="btn-view-details" title="View Details">
+                <i class="fa-solid fa-circle-info"></i> Details
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product Card 2 -->
+        <article class="product-card" data-id="2" data-category="electronics" data-price="999.99" data-rating="4.8">
+          <div class="card-img-wrapper">
+            <img src="https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg" alt="Samsung 49-Inch CHG90 Curved Gaming Monitor" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="product-title" title="Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED">
+              Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED
+            </h3>
+            <div class="product-rating">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.8</span>
+              <span class="rating-count">(420 reviews)</span>
+            </div>
+            <div class="product-price">$999.99</div>
+            <div class="card-actions">
+              <button type="button" class="btn btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+              <a href="#productDetailModal" class="btn-view-details" title="View Details">
+                <i class="fa-solid fa-circle-info"></i> Details
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product Card 3 -->
+        <article class="product-card" data-id="3" data-category="women's clothing" data-price="56.99" data-rating="4.6">
+          <div class="card-img-wrapper">
+            <img src="https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg" alt="BIYLACLESEN Women's 3-in-1 Snowboard Winter Jacket" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="product-title" title="BIYLACLESEN Women's 3-in-1 Snowboard Winter Fleece Jacket Purple">
+              BIYLACLESEN Women's 3-in-1 Snowboard Winter Fleece Jacket Purple
+            </h3>
+            <div class="product-rating">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.6</span>
+              <span class="rating-count">(180 reviews)</span>
+            </div>
+            <div class="product-price">$56.99</div>
+            <div class="card-actions">
+              <button type="button" class="btn btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+              <a href="#productDetailModal" class="btn-view-details" title="View Details">
+                <i class="fa-solid fa-circle-info"></i> Details
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product Card 4 -->
+        <article class="product-card" data-id="4" data-category="men's clothing" data-price="45.00" data-rating="4.2">
+          <div class="card-img-wrapper">
+            <img src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" alt="Mens Casual Jacket" loading="lazy">
+          </div>
+          <div class="card-content">
+            <h3 class="product-title" title="Mens Casual Premium Slim Fit Vintage Jacket">
+              Mens Casual Premium Slim Fit Vintage Jacket
+            </h3>
+            <div class="product-rating">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.2</span>
+              <span class="rating-count">(95 reviews)</span>
+            </div>
+            <div class="product-price">$45.00</div>
+            <div class="card-actions">
+              <button type="button" class="btn btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+              <a href="#productDetailModal" class="btn-view-details" title="View Details">
+                <i class="fa-solid fa-circle-info"></i> Details
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== PURE CSS REACTIVE MODALS (Via :target) ==================== -->
+
+  <!-- 1. Filter Modal (filter products by each type) -->
+  <div id="filterModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-filter"></i> Filter Products by Type</h3>
+        <a href="#" class="modal-close" aria-label="Close modal">&times;</a>
+      </div>
+      <div class="modal-body">
+        <form class="modal-form" id="filterModalForm">
+          <div class="form-group">
+            <label>Product Category / Type</label>
+            <div class="checkbox-group">
+              <label class="checkbox-label"><input type="checkbox" name="type" value="electronics" checked> Electronics & Monitors</label>
+              <label class="checkbox-label"><input type="checkbox" name="type" value="men's clothing" checked> Men's Clothing</label>
+              <label class="checkbox-label"><input type="checkbox" name="type" value="women's clothing" checked> Women's Clothing</label>
+              <label class="checkbox-label"><input type="checkbox" name="type" value="jewelery"> Jewelry & Accessories</label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="modalMinPrice">Min Price ($)</label>
+              <input type="number" id="modalMinPrice" placeholder="0" min="0">
+            </div>
+            <div class="form-group half">
+              <label for="modalMaxPrice">Max Price ($)</label>
+              <input type="number" id="modalMaxPrice" placeholder="2000" min="0">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="modalRatingSelect">Minimum Customer Rating</label>
+            <select id="modalRatingSelect" class="form-select">
+              <option value="4">4 Stars & Above ★★★★☆</option>
+              <option value="3">3 Stars & Above ★★★☆☆</option>
+              <option value="2">2 Stars & Above ★★☆☆☆</option>
+              <option value="0">All Ratings</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-cancel">Cancel</a>
+        <button type="button" class="btn btn-apply" id="modalApplyBtn">Apply Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Product Detail Modal Dialog -->
+  <div id="productDetailModal" class="modal-overlay">
+    <div class="modal-box detail-modal-box">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-circle-info"></i> Product Details</h3>
+        <a href="#" class="modal-close" id="closeDetailModalBtn" aria-label="Close modal">&times;</a>
+      </div>
+      <div class="modal-body">
+        <div class="detail-container">
+          <div class="detail-image-box">
+            <img id="detailImage" src="https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg" alt="Product detail image">
+          </div>
+          <div class="detail-info">
+            <span class="detail-badge" id="detailCategory">Electronics</span>
+            <h2 class="detail-title" id="detailTitle">Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor</h2>
+            
+            <div class="detail-rating-row">
+              <span class="stars" id="detailStars"><i class="fa-solid fa-star"></i> 4.8</span>
+              <span class="rating-count" id="detailRatingCount">(420 customer reviews)</span>
+            </div>
+
+            <div class="detail-price-box">
+              <span class="price-label">Price:</span>
+              <span class="price-value" id="detailPrice">$999.99</span>
+            </div>
+
+            <div class="detail-description-section">
+              <h4>Description:</h4>
+              <p id="detailDescription">
+                49 inch super ultrawide 32:9 curved gaming monitor with dual 27 inch screen side by side Quantum Dot (QLED) technology, HDR support and factory calibration provides stunningly realistic and accurate color and contrast 144Hz high refresh rate and 1ms ultra fast response time.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-cancel">Close</a>
+        <button type="button" class="btn btn-add-cart" id="detailAddToCartBtn">
+          <i class="fa-solid fa-cart-plus"></i> Add to Cart
+        </button>
+      </div>
+    </div>
+  </div> 
+  <script src="Ecommerce.js"></script>
+</body>
+</html>
