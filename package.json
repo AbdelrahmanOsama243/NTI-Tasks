@@ -1,0 +1,28 @@
+{
+  "name": "nti-tasks",
+  "version": "1.0.0",
+  "description": "All Nti Tasks Mean Stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon Task2/Server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbdelrahmanOsama243/NTI-Tasks.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AbdelrahmanOsama243/NTI-Tasks/issues"
+  },
+  "homepage": "https://github.com/AbdelrahmanOsama243/NTI-Tasks#readme",
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "mongoose": "^9.12.1",
+    "nodemon": "^3.1.14"
+  }
+}
