@@ -70,7 +70,7 @@ router.delete('/products/:id', (req, res) => {
     const productIndex = products.findIndex(p => p.id === productId);
     if (productIndex !== -1) {
         const deletedProduct = products.splice(productIndex, 1);
-        fs.writeFileSync('./data.json', JSON.stringify(products, null, 2));
+        CRUD.writeProductsToFile(products);
         res.status(200).json(deletedProduct[0]);
     } else {
         res.status(404).json({ message: 'Product not found' });
